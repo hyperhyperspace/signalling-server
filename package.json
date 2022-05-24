@@ -1,0 +1,10 @@
+{
+  "name": "@hyper-hyper-space/signalling",
+  "version": "0.0.1",
+  "description": "Hyper Hyper Space's signalling server",
+  "main": "dist/index.js",
+  "repository": "https://github.com/hyperhyperspace/signalling-server.git",
+  "author": "Santi Bazerque <sbazerque@gmail.com>",
+  "license": "MIT",
+  "private": false
+}

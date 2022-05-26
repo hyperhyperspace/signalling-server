@@ -1,6 +1,6 @@
 {
   "name": "@hyper-hyper-space/signalling",
-  "version": "0.0.1",
+  "version": "0.1.1",
   "description": "Hyper Hyper Space's signalling server",
   "main": "dist/index.js",
   "repository": "https://github.com/hyperhyperspace/signalling-server.git",
@@ -9,6 +9,7 @@
   "private": false,
   "source": "src/index.ts",
   "types": "decl/index.d.ts",
+  "bin": "dist/index.js",
   "scripts": {
     "build": "npx tsc",
     "clean": "rm -rf ./decl/* ./dist/*",
@@ -18,8 +19,8 @@
     "typescript": "^4.3.5"
   },
   "dependencies": {
-    "@hyper-hyper-space/core": "0.9.0",
-    "@hyper-hyper-space/node-env": "0.11.0",
+    "@hyper-hyper-space/core": "0.10.1",
+    "@hyper-hyper-space/node-env": "0.12.0",
     "@types/node": "^12.0.0",
     "@types/uuid": "^8.3.4",
     "@types/ws": "^8.5.3",

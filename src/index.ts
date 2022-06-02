@@ -96,7 +96,7 @@ wss.on('connection', (ws: WebSocket, request: IncomingMessage) => {
 
                 Shuffle.array(allWs);
 
-                const targetWs = limit === undefined || allWs.length <= limit? allWs : allWs.slice(0, length);
+                const targetWs = limit === undefined || allWs.length <= limit? allWs : allWs.slice(0, limit);
 
                 for (const wsToTarget of targetWs) {
                     if (wsToTarget.readyState === wsToTarget.OPEN) {

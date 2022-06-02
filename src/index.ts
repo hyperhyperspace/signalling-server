@@ -7,7 +7,7 @@ import { v4 as uuidv4 } from 'uuid';
 
 const verifiedIdPrefix = 'verified-id-';
 
-const wss = new WebSocketServer({ port: 8765 });
+const wss = new WebSocketServer({ host: '0.0.0.0', port: 3002 });
 
 const listeners = new MultiMap<string, WebSocket>();
 

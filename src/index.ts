@@ -1,11 +1,11 @@
 import '@hyper-hyper-space/node-env';
-import { HashedObject, Hashing, Identity, Shuffle } from '@hyper-hyper-space/core';
+import { HashedObject, Hashing, Identity, LinkupAddress, Shuffle } from '@hyper-hyper-space/core';
 import { MultiMap } from '@hyper-hyper-space/core/dist/util/multimap';
 import { IncomingMessage } from 'http';
 import WebSocket, { WebSocketServer } from 'ws';
 import { v4 as uuidv4 } from 'uuid';
 
-const verifiedIdPrefix = 'verified-id-';
+const verifiedIdPrefix = LinkupAddress.verifiedIdPrefix;
 
 const wss = new WebSocketServer({ host: '0.0.0.0', port: 3002 });
 

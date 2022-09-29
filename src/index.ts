@@ -22,7 +22,6 @@ wss.on('connection', (ws: WebSocket, request: IncomingMessage) => {
     const wsControl: {monitor?: NodeJS.Timeout, alive: boolean} = {alive: true};
 
     const uuid = uuidv4();
-    uuid;
 
     wsControl.monitor = setInterval(() => {
         if (!wsControl.alive && linkupIds.size === 0) {

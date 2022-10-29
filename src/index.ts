@@ -7,7 +7,9 @@ import { v4 as uuidv4 } from 'uuid';
 
 const verifiedIdPrefix = LinkupAddress.verifiedIdPrefix;
 
-const wss = new WebSocketServer({ host: '0.0.0.0', port: 3002 });
+const config = { host: '0.0.0.0', port: 3002 };
+
+const wss = new WebSocketServer(config);
 
 const listeners = new MultiMap<string, WebSocket>();
 
@@ -55,15 +57,23 @@ wss.on('connection', (ws: WebSocket, request: IncomingMessage) => {
     
                     try {
                         HashedObject.fromLiteralContextWithValidation(message.idContext).then((id: HashedObject) => {
+
+                            
+
                             if (id instanceof Identity && 
-                                Hashing.toHex(id.hash()) === identityHash &&
-                                id.verifySignature(uuid, message.signature || '')) {
-                                    
-                                    listeners.add(linkupId, ws);
-            
-                                    console.log('registering listener for ' + linkupId + ' after id validation');
+                                Hashing.toHex(id.hash()) === identityHash) {
+
+                                id.verifySignature(uuid, message.signature || '').then((verified: boolean) => {
+
+                                    if (verified) {
+                                        listeners.add(linkupId, ws);
+                                        console.log('registering listener for ' + linkupId + ' after id validation');
+                                    } else {
+                                        console.log('NOT registering listener for ' + linkupId + ': id validation failed');
+                                    }
+                                }); 
                             } else {
-                                console.log('NOT registering listener for ' + linkupId + ': id validation failed');
+                                console.log('NOT registering listener for ' + linkupId + ': wrong valiodation params');
                             }
                         }).catch((reason: any) => {
                             console.log('ERROR trying to register listener for ' + linkupId + ':');
@@ -154,3 +164,5 @@ wss.on('connection', (ws: WebSocket, request: IncomingMessage) => {
         
     });
 });
+
+console.log("Started Hyper Hyper Space's signalling server on " + config.host + ':' + config.port);
